@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@section header{
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section footer{
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+
+}
+<div class="content-wrapper">
+    <div>
+        <h3> <i> This is Home Page</i></h3>
+    </div>
+   </div>
+<!-- /.content-wrapper -->
+

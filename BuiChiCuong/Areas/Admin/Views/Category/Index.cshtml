@@ -1,0 +1,94 @@
+﻿@model IEnumerable<BuiChiCuong.Context.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header{
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section footer{
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#prtable').DataTable();
+        });
+    </script>
+}
+
+<h2 style="color: red ">Quản Lý Nhãn Hiệu</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+@using (Html.BeginForm("Index", "Category", FormMethod.Get))
+{
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Tên Danh Mục
+        </th>
+        <th>
+            Hình Ảnh
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Slug)
+        </th>
+        <th>
+            Hiển Thị Trang Chủ
+        </th>
+        <th>
+            Thứ Tự Hiển Thị
+        </th>
+        <th>
+            Ngày Tạo
+        </th>
+        <th>
+            Ngày Cập Nhật
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </th>
+        <th>Chức Năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img src="~/Content/images/category/@Html.DisplayFor(Item => item.Avatar)" width="150px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slug)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowOnHomePage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateddOnUtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deleted)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

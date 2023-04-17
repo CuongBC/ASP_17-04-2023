@@ -1,0 +1,14 @@
+﻿@model IEnumerable<BuiChiCuong.Context.Brand>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <ol class="breadcrumb float-left">
+            @foreach (var item in Model)
+            {
+                 <li class="breadcrumb-item"><a href="@Url.Action("ProductBrand", "Brand", new {id = item.Id})">@item.Name</a></li>
+            }
+
+           
+        </ol>
+    </div> <!-- card-body .// -->
+</div> <!-- card.// -->

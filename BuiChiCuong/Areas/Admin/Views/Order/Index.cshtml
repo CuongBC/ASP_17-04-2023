@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BuiChiCuong.Context.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header{
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section footer{
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#prtable').DataTable();
+        });
+    </script>
+}
+
+<h2 style="color: red ">Quản Lý Đơn Hàng</h2>
+
+<p>
+    @Html.ActionLink("Đơn hàng đã xác nhận", "Confirmed")
+</p>
+@using (Html.BeginForm("Index", "Order", FormMethod.Get))
+{
+
+}
+
+<table class="table">
+    <h4>Đơn hàng chưa xác nhận</h4>
+    <tr>
+        <th>
+            Mã Đơn Hàng
+        </th>
+        <th>
+            Tên Đơn Hàng
+        </th>
+        <th>
+           Người Mua
+        </th>
+        <th>
+            Tình Trạng
+        </th>
+        <th>
+            Ngày Mua
+        </th>
+     
+        <th>Chức Năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>Chưa Xác Nhận</td>
+            <td>@Html.DisplayFor(modelItem => item.CreatedOnUtc)
+</td>
+           
+            <td>
+                @Html.ActionLink("Detail", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Xác nhận", "Confirm", new { id = item.Id }) |
+                @Html.ActionLink("Hủy đơn", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
